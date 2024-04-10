@@ -1,28 +1,31 @@
-#user_interface
-def choosing_option():
-    options = ["Performance Team","Mentors","Financial Dep","Mental Health Dep"]
-    print("Hello there\nWelcome to WeThinkCode_")
-    count = 0
-    for option in options:
-        count = count + 1
-        print(f"{count}.{option}")
-    while True:
-        user_input = input("Select your option: ")
-        # return user_input
-        if user_input == "Performance Team":
-            from Departments import performance_team
-        elif user_input == "Mentors":
-            from Departments import mentors
-        elif user_input == "Financial Dep":
-            from Departments import financial_dep
-        elif user_input ==" Mental Health Dep":
-            from Departments import mental_health_d
-        else:
-            print("Please enter a valid option")
-            continue
-        
-choosing_option()
-        
-     
-    
+import tkinter as tk
+from Departments import performance_team, mental_health_d
 
+def framework_start():
+    root = tk.Tk()
+    root.title("Queuing Machine Dispenser")
+    root.geometry("600x400")
+    current_ticket_label = tk.Label(root)
+    current_ticket_label.pack()
+    choosing_option(root, current_ticket_label)
+    root.mainloop()
+
+def handle_button_click(option, label):
+    # Clear the label text
+    label.config(text="")
+    
+    if option == "Performance Team":
+        performance_team.display_team_info()
+    elif option == "Mental Health Dep":
+        mental_health_d.display_department_info()
+    # Add handling for other departments here
+
+def choosing_option(root, label):
+    options = ["Performance Team", "Mentors", "Financial Dep", "Mental Health Dep"]
+    label.config(text="Select a department")
+    label.pack()
+    for option in options:
+        btn = tk.Button(root, text=option, command=lambda opt=option: handle_button_click(opt, label))
+        btn.pack(pady=5)
+
+framework_start()
