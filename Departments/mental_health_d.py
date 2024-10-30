@@ -37,7 +37,7 @@ def display_department_info():
         department_info += f"\nDepartment Mission:\n{department_mission}"
         print(department_info)
 
-    print_button = tk.Button(root, text="Print Mental Health Department Info", command=print_department_info)
+    print_button = tk.Button(root, text="Request Health Department Info via email", command=print_department_info)
     print_button.pack(pady=10)
 
     root.mainloop()
